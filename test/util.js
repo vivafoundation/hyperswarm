@@ -5,7 +5,8 @@ const dht = require('@hyperswarm/dht')
 const { once } = require('nonsynchronous')
 
 async function dhtBootstrap () {
-  const node = dht()
+  const node = dht({ bootstrap: [] })
+  node.listen()
   await once(node, 'listening')
   const { port } = node.address()
   return {
